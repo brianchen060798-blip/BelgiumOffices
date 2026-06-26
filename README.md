@@ -1,6 +1,8 @@
-# 建築案例設計輔助工具 (AI-assisted Architectural Design Inspiration System)
+# 建築案例設計輔助工具 (AI-assisted Architectural Design Inspiration System) 
+作者：陳宏瑜、李適安
+指導：簡聖芬、黃柏熹、李奕萱
 
-本專案是一個基於當代比利時先鋒建築學概念與 **Google Gemini API** 的設計重構與引導式 AI 對話系統。
+本專案是一個基於當代比利時先鋒建築學概念與 **Google Gemini** 的設計重構與引導式 AI 對話系統。
 
 本工具旨在打破傳統台灣建築案例分析過度偏向感性、詩意描述的局限，將其轉化為客觀物理事實與結構化的**「目標-策略 (Goal-Strategy)」**幾何特徵，並透過 AI 代理人輔助設計師進行案例比對與方案重構。
 
@@ -19,21 +21,15 @@
 
 本專案將主客觀資料與邏輯元件進行高度模組化配置：
 
-### 1. `/data/` 資料與規範目錄
-* 📖 **[ontology.json](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/data/ontology.json)** *(「建築學概念語意字典」)*：定義了 5 大頂層範疇（`building`, `site`, `participant`, `issue`, `event`）以及子範疇之階層關係，指引 AI 如何將非結構性的文本句段拆解並對齊統一的語意節點。
-* 🛡️ **[schema.json](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/data/schema.json)** *(「資料庫格式驗證器」)*：相較於語意字典，此檔案專用於驗證與約束物理事實 facts（如氣候區、規模面積、主結構系統）的實體 JSON 數據格式，防範 AI 的欄位格式幻覺。
-* 📝 **[framework.md](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/data/framework.md)**：包含雙階段特徵萃取工作流、拒絕幻覺機制（允許空值 `null`）、以及主觀 **Goal-Strategy** 概念重組分流的技術設計規範。
-* 📊 **[cases_database.json](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/data/cases_database.json)**：已建構完成的 20 個比利時當代落成案例結構化主資料庫。
-* 🌐 **[ontology_visualizer.html](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/data/ontology_visualizer.html)**：用於視覺化展示本體階層關係的互動式網頁工具。
+### 1. 資料與規範目錄
+* 📖 **[ontology.json]** *(「建築學概念語意字典」)*：定義了 5 大頂層範疇（`building`, `site`, `participant`, `issue`, `event`）以及子範疇之階層關係，指引 AI 如何將非結構性的文本句段拆解並對齊統一的語意節點。
+* 🛡️ **[schema.json]** *(「資料庫格式驗證器」)*：相較於語意字典，此檔案專用於驗證與約束物理事實 facts（如氣候區、規模面積、主結構系統）的實體 JSON 數據格式，防範 AI 的欄位格式幻覺。
+* 📝 **[framework.md]**：包含雙階段特徵萃取工作流、拒絕幻覺機制（允許空值 `null`）、以及主觀 **Goal-Strategy** 概念重組分流的技術設計規範。
+* 📊 **[cases_database.json]**：已建構完成的 20 個比利時當代落成案例結構化主資料庫。
 
-### 2. `/src/` 前端互動應用目錄
-* 💻 **[index.html](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/index.html)**：工具的前端對話介面主頁。
-* 🎨 **[style.css](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/src/style.css)**：現代暗色調玻璃摩登風格的 UI 樣式表。
-* 🧠 **[app.js](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/src/app.js)** & **[ai-helper.js](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/src/ai-helper.js)**：負責對接 Gemini API，並在前端實作「對話引導協議 (Interactive Chat Protocol)」的核心邏輯。
-* ⚙️ **[system_prompt_md.js](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/src/system_prompt_md.js)**：定義後端 AI 進行 Triage 分流判定與設計建議重組的 System Prompt。
 
-### 3. `/reports/` 期末報告目錄
-* 📃 **[final_report.md](file:///C:/Users/StanLee/Documents/antigravity/keen-hypatia/reports/final_report.md)**：本專案的期末完整開發報告，記錄完整的開發脈絡與實作細節。
+### 2.  期末報告目錄
+* 📃 **[final_report.md]**：本專案的期末完整開發報告，記錄完整的開發脈絡與實作細節。
 
 ---
 
@@ -71,34 +67,25 @@ graph TD
 
 ---
 
-## ⚙️ 核心開發規則與機制 (Constraints & Guardrails)
 
+## ⚙️ 核心開發規則與機制 (Constraints & Guardrails)
 * 🚫 **無幻覺防禦機制**：在第一階段抽取時，若原始文獻中未提及某項本體節點（例如 zoning 退縮限制），該欄位一律標記為 `null` (允許空白)，禁止 AI 憑空捏造資訊。
 * 🧱 **雙軌設定定位**：
   * **`ontology.json` (語意字典)**：解決詞彙對齊問題，教導 AI 如何從複雜段落中識別建築學專用實體。
   * **`schema.json` (格式驗證器)**：解決格式結構問題，使用 JSON Schema 強制約束數值格式。
 * 🌪️ **氣候哲學轉譯**：當比利時溫帶被動式手法（如雙層溫室表皮）投影至亞熱帶時，AI 會自動將其轉譯為輕質遮陽沖孔網與煙囪效應排熱挑空，而非生硬複製。
-
 ---
-
-## 🚀 本地快速開始與運行步驟
-
-### 1. 克隆專案與準備
-```bash
-# 複製本專案儲存庫
-git clone <your-repository-url>
-cd keen-hypatia
-```
-
-### 2. 本地伺服器啟動
-由於前端腳本包含模組化的 ES Module 導入（`import`/`export`），建議您透過本地 Web Server 啟動專案，避免發生瀏覽器的 CORS 攔截：
-* **方法 A (推薦)**：使用 VS Code，安裝外掛程式 `Live Server`，並在專案根目錄按右鍵選擇 `Open with Live Server`。
-* **方法 B (Python)**：
-  ```bash
-  python -m http.server 8000
-  ```
-  在瀏覽器開啟 [http://localhost:8000](http://localhost:8000)。
-* **方法 C (直接雙擊)**：在部分解除網頁 CORS 限制的環境下，亦可直接雙擊 `index.html` 進行訪問。
-
-### 3. 配置 API 金鑰
-開啟網頁後，請在介面頂部的金鑰配置欄位輸入您的 **Google Gemini API Key**，即可開始與 AI 進行互動與設計對話。
+## 🤖 Google Gemini Gem 後端代理人部署說明 
+Gemini Gem ： https://gemini.google.com/gem/1vlVCQn6Oahnxlc8KdNtFQAxn-IJntPDk?usp=sharing
+本專案支援將 AI 核心邏輯與對話協定直接部署於 **Google Gemini Gem** 自訂代理人平台上。Gem 平台作為本專案的核心後端使用介面，可載入結構化資料庫並套用系統指令，實現無程式碼的高校互動：
+1. **建立新的 Gem**：
+   在 Google Gemini 網頁中，建立一個名為「建築案例設計輔助工具」的自訂 Gem。
+2. **上傳本機參考檔案 (Knowledge Files)**：
+   在該 Gem 的知識庫設定中上傳以下檔案，作為 AI 推論的參考依據：
+   * `data/cases_database.json` (20 個先例主資料庫)
+   * `data/schema.json` (資料庫格式驗證器)
+   * `data/framework.md` (分析框架與規則文件)
+3. **配置 System Prompt 指令**：
+   複製 `src/system_prompt_md.js` 中的 System Prompt（或 `final_report.md` 第三章中提供的指令），貼入 Gem 的「Instructions (指令)」設定框中。
+4. **與 Gem 互動**：
+   直接在 Gem 介面輸入任何目標設計案例（例如：「我想設計一個台灣南部的圖書館，比利時建築師會怎麼做？」），Gem 後端將引導您選擇情境，並即時讀取內部資料庫完成分流重構。
