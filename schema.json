@@ -1,0 +1,129 @@
+{
+  "name": "Architectural Case Analysis Schema",
+  "version": "1.0",
+  "fields": {
+    "1. Location": {
+      "type": "object",
+      "properties": {
+        "continent": {
+          "type": "string",
+          "description": "洲別，例如：歐洲、亞洲、北美洲"
+        },
+        "country": {
+          "type": "string",
+          "description": "國家"
+        },
+        "city": {
+          "type": "string",
+          "description": "城市"
+        },
+        "city_character": {
+          "type": "string",
+          "description": "城市特質，如：歷史名城、高密度都市、山城、港口都市"
+        }
+      }
+    },
+    "2. Climate": {
+      "type": "string",
+      "enum": [
+        "溫帶",
+        "熱帶",
+        "亞熱帶",
+        "寒帶",
+        "極圈"
+      ],
+      "description": "氣候類型"
+    },
+    "3. Topography": {
+      "type": "string",
+      "enum": [
+        "山地",
+        "平地",
+        "懸崖",
+        "河邊",
+        "丘陵",
+        "台地",
+        "海邊"
+      ],
+      "description": "地形特徵"
+    },
+    "4. program": {
+      "type": "object",
+      "properties": {
+        "public": {
+          "type": "object",
+          "properties": {
+            "program": {
+              "type": "string",
+              "description": "公共空間機能"
+            }
+          }
+        },
+        "private": {
+          "type": "object",
+          "properties": {
+            "program": {
+              "type": "string",
+              "description": "私密空間機能"
+            }
+          }
+        }
+      }
+    },
+    "5. Topic": {
+      "type": "object",
+      "properties": {
+        "under-regulation": {
+          "type": "object",
+          "properties": {
+            "client needs/building regulation": {
+              "type": "string",
+              "description": "法規/業主需求：基地法定限制、法規規範、業主具體功能需求"
+            }
+          }
+        },
+        "beyond-regulation": {
+          "type": "object",
+          "properties": {
+            "society/site constraint/technical": {
+              "type": "string",
+              "description": "法規之外：社會涵意、基地特殊限制、技術/構造創新"
+            }
+          }
+        }
+      }
+    },
+    "6. Building type": {
+      "type": "string",
+      "enum": [
+        "New construct",
+        "Expansion",
+        "Revise",
+        "Re construct"
+      ],
+      "description": "建築類型"
+    },
+    "7. Structural System": {
+      "type": "string",
+      "enum": [
+        "RC",
+        "Steel",
+        "Wood",
+        "Bambu",
+        "Stone & Brick",
+        "Other"
+      ],
+      "description": "結構系統"
+    },
+    "8. Scale": {
+      "type": "string",
+      "enum": [
+        "0-300m2",
+        "300-2000 m2",
+        "2000-10000 m2",
+        "10000 up"
+      ],
+      "description": "建築規模面積"
+    }
+  }
+}
