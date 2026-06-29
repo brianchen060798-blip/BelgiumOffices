@@ -369,13 +369,19 @@ graph TD
 ## 肆、 結論與反思 (Conclusions & Reflections)
 
 ### 一、 從案例知識推論建築知識
-*(請在此處填入您的推論想法：例如，如何透過 AI 的結構化對照，將個別分散的比利時案例（個殊性）提升為一種通用的幾何模矩、結構真實性與低預算應變的設計規律（普遍性）？)*
+本專案透過結構化對照，成功將零散的個別案例（個殊性）提升為具備設計規律的普遍性知識。然而，我們也必須反思「定義權」的拉扯：從 [ontology.json](file:///Users/redidishchen/Library/CloudStorage/GoogleDrive-brianchen060798@gmail.com/.shortcut-targets-by-id/1FAWliAlfvxZsiToaVM08p5bQAL9MRcoP/keen-hypatia/data/ontology.json) 的架構到雙欄特徵提取，本質上都是創造者個人對「比利時建築師設計手法」的主觀解讀。雖然透過 [data_flow_workflow.json](file:///Users/redidishchen/Library/CloudStorage/GoogleDrive-brianchen060798@gmail.com/.shortcut-targets-by-id/1FAWliAlfvxZsiToaVM08p5bQAL9MRcoP/keen-hypatia/data/data_flow_workflow.json) 在尺度拆解、機能對射與氣候轉譯（如溫室轉譯為熱帶沖孔遮陽）上實現了跨案例對照，但這種知識生成高度依賴預設的視角，並非中立客觀的建築真理。
 
 ### 二、 評論AI所具備的建築知識
-*(請在此處填入您的評論想法：例如，評論 LLM 大語言模型在處理二維圖面、三維空間關係時的局限性；以及透過 JSON Schema 與 Ontology 強制約束後，如何成功防範了 AI 在專業建築學領域上的幻覺，使其具備可靠的分析能力？)*
+LLM 缺乏真實的 3D 與 2D 幾何感知能力，其理解是基於文字符號的拓撲關聯。雖然本專案利用 [ontology.json](file:///Users/redidishchen/Library/CloudStorage/GoogleDrive-brianchen060798@gmail.com/.shortcut-targets-by-id/1FAWliAlfvxZsiToaVM08p5bQAL9MRcoP/keen-hypatia/data/ontology.json) 與 `schema.json` 約束格式以成功防範幻覺，但這也帶來了「主觀同溫層」的自證預言：因為框架是由人類高度主動給予，AI 所採集的知識往往顯得「太過順從」或僅流於機械式的「反面對比」。最終結果雖看起來符合使用者需求，本質上卻只是圍繞在人類預先設定的主觀框架中的封閉迴路。
 
 ### 三、 專案經驗的回顧與反思
-*(請在此處填入您的回顧反思：例如，在建構本體論字典的過程中，對於「空間本質」與「機能名詞」定義的拉扯與學習；以及在與 AI 協作開發時，如何透過清晰的提示詞工程與資料流設計，將感性的建築設計轉譯為理性可操作的工具？)*
+在建構本體論的過程中，我們經歷了將具體「機能名詞」抽象化為「空間本質（如 `space.Transition Space`）」的拉扯與學習。此外，我們在操作 LLM 時，試圖透過**建構全新的使用者流程與資料流分流**來回應上述困境：
+1. **主客拆分與分流**：我們不讓考量集中於主觀的「設計手法解讀」，而是搭配絕對客觀的物理資訊（氣候、面積、結構）進行校正，將輸入資料拆分為主觀空間語意（Ontology）與客觀硬性指標（Schema）雙軌。
+2. **模糊分流與對照流程**：在模糊分流比對（Fuzzy Triage）中，以「客觀物理條件」與「空間公共性」作為判定路由，分流進入「分支 A（哲學重構）」或「分支 B（批判與通用優化）」，將主觀手法約束於「目標-策略（Goal-Strategy）」因果對照中。
+
+**結論**：
+要打破 AI 順從的自證預言同溫層，關鍵在於**不能單純依賴自然語言的感性對話，而必須在 LLM 之上建立一套客觀物理事實與主觀設計意圖雙軌並行的分流管線**。透過將主觀設計思維錨定於真實的物理條件（尺度、氣候、構造系統）之上，我們既保留了特定美學立場的啟發性（避免了大數據的平庸平均），又利用物理邊界制約了 AI 的幻覺與盲目順從，最終實現了感性建築哲學與理性工程邏輯的有機結合。
+
 
 ---
 
